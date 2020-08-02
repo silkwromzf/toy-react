@@ -7,7 +7,8 @@ class ElementWrapper {
         this.root.setAttribute(name, value);
     }
     appendChild(vchild) {
-        this.root.appendChild(vchild);
+        // this.root.appendChild(vchild); 错误 每次添加元素调用的是元素的mountTo方法
+        vchild.mountTo(this.root)
     }
     mountTo(parent) {
         parent.appendChild(this.root)
@@ -25,7 +26,6 @@ class TextWrapper {
 export let ToyReact = {
     createElement(type, attributes, ...children) {
         let element;
-        debugger
         if(typeof type === 'string')
             element = new ElementWrapper(type);
         else 
@@ -37,6 +37,8 @@ export let ToyReact = {
         for (let child of children) {
             if( typeof child === 'string')
                 child = new TextWrapper(child)
+            // else 
+            //     child = new child;
             element.appendChild(child);
         }
         return element;

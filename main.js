@@ -12,11 +12,7 @@ class MyComponent {
         vdom.mountTo(parent)
     }
 }
-let a = <MyComponent name='a' id='ida'>
-    {/* <span>Hello</span>
-    <span>World</span>
-    <span>!</span> */}
-</MyComponent>
+let a = <MyComponent name='a' id='ida'></MyComponent>
 
 ToyReact.render(
     a,
