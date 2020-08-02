@@ -1,5 +1,7 @@
 import { ToyReact, Component } from './ToyReact'
 
+// https://reactjs.org/tutorial/tutorial.html
+// https://codepen.io/gaearon/pen/gWWZgR?editors=0010
 class Square extends Component {
     render() {
         return (
