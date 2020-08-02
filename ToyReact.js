@@ -6,12 +6,13 @@ class ElementWrapper {
     setAttribute(name, value) {
         if(name.match(/^on([\s\S]+)$/)) {
             let eventName = RegExp.$1.replace(/^[\s\S]/, (s) => s.toLowerCase());
-            this.root.addEventListener(eventName, value)
+            this.root.addEventListener(eventName, value);
         }
+        if(name === 'className')
+            name = 'class';
         this.root.setAttribute(name, value);
     }
     appendChild(vchild) {
-        // this.root.appendChild(vchild); 错误 每次添加元素调用的是元素的mountTo方法
         vchild.mountTo(this.root)
     }
     mountTo(parent) {
@@ -33,16 +34,33 @@ export class Component {
         this.props = Object.create(null);
     }
     setAttribute(name, value) {
-      
         this.props[name] = value;
         this[name] = value;
     }
-    appendChild(child) {
-        this.children.push(child)
+    appendChild(vchild) {
+        this.children.push(vchild)
     }
     mountTo(parent) {
         let vdom = this.render();
         vdom.mountTo(parent)
+    }
+    setState(state) {
+        let merge = (oldState, newState) => {
+            for (let p  in newState) {
+                if(typeof newState[p] === 'object') {
+                    if(typeof oldState[p] !== 'object') {
+                        oldState[p] = {}
+                    }
+                    merge(oldState[p], newState[p])
+                } else {
+                    oldState[p] = newState[p]
+                }
+            }
+        }
+        if(!this.state && state)
+            this.state = {};
+        merge(this.state, state)
+        console.log(this.state)
     }
 }
 export let ToyReact = {
