@@ -54,7 +54,6 @@ export let ToyReact = {
 
         let insertChildren = (children) => {
             for (let child of children) {
-               
                 if(typeof child === 'object' && child instanceof Array) {
                     insertChildren(child)
                 } else {
@@ -69,7 +68,14 @@ export let ToyReact = {
                 }
             }
         }
-        insertChildren(children)
+        insertChildren(children);
+        // for (let child of children) {
+        //     if( typeof child === 'string')
+        //         child = new TextWrapper(child)
+        //     debugger
+        //     element.appendChild(child);
+        // }
+      
         return element;
     },
     render(vdom, element) {
