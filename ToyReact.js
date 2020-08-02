@@ -69,13 +69,6 @@ export let ToyReact = {
             }
         }
         insertChildren(children);
-        // for (let child of children) {
-        //     if( typeof child === 'string')
-        //         child = new TextWrapper(child)
-        //     debugger
-        //     element.appendChild(child);
-        // }
-      
         return element;
     },
     render(vdom, element) {

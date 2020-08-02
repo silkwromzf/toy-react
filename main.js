@@ -5,7 +5,7 @@ class MyComponent extends Component {
         return <div>
             <span>Hello</span>
             <span>World</span>
-            {/* {this.children} */}
+            {this.children}
             {true}
         </div>
     }
@@ -23,7 +23,7 @@ class MyChildComponent extends Component {
  * 当作为children 获取时候 才会被父元素 appendChilren 加入
  */
 let a = <MyComponent name='a' id='ida'>
-    <div>1123</div>
+    <MyChildComponent />
 </MyComponent>
 
 ToyReact.render(
