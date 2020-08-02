@@ -5,8 +5,8 @@ class MyComponent extends Component {
         return <div>
             <span>Hello</span>
             <span>World</span>
-            ！
-            {/* {this.children} */}
+            {this.children}
+            {true}
         </div>
     }
 }
@@ -18,6 +18,7 @@ class MyChildComponent extends Component {
     }
 }
 let a = <MyComponent name='a' id='ida'>
+    <div>1123</div>
 </MyComponent>
 
 ToyReact.render(
