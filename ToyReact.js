@@ -38,11 +38,17 @@ export class Component {
         this[name] = value;
     }
     appendChild(vchild) {
-        this.children.push(vchild)
+        this.children.push(vchild);
     }
     mountTo(parent) {
         let vdom = this.render();
-        vdom.mountTo(parent)
+        vdom.mountTo(parent);
+
+        // 可以截取半个节点
+        let range = document.createRange();
+        range.setStartAfter(parent.lastChild);
+        range.setEndAfter(parent.lastChild);
+
     }
     setState(state) {
         let merge = (oldState, newState) => {
