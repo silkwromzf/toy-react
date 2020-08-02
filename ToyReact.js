@@ -11,7 +11,6 @@ class ElementWrapper {
         vchild.mountTo(this.root)
     }
     mountTo(parent) {
-        console.log(1)
         parent.appendChild(this.root)
     }
 }
@@ -20,7 +19,6 @@ class TextWrapper {
         this.root = document.createTextNode(content)
     }
     mountTo(parent) {
-        console.log(2)
         parent.appendChild(this.root)
     }
 }
@@ -32,17 +30,13 @@ export class Component {
         this[name] = value;
     }
     mountTo(parent) {
-        console.log('Component_start')
         let vdom = this.render();
-        console.log('Component_end', vdom)
-
         vdom.mountTo(parent)
     }
 }
 export let ToyReact = {
     // 读取到
     createElement(type, attributes, ...children) {
-        console.log('type, attributes, ...children', type, attributes, children)
         let element;
         if(typeof type === 'string')
             element = new ElementWrapper(type);
@@ -66,7 +60,6 @@ export let ToyReact = {
         return element;
     },
     render(vdom, element) {
-        console.log('render', vdom)
         vdom.mountTo(element)
     }
 }
