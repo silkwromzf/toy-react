@@ -41,7 +41,6 @@ export class Component {
 export let ToyReact = {
     // 读取到
     createElement(type, attributes, ...children) {
-        console.log('type, attributes, ...children', type, attributes, children)
         let element;
         if(typeof type === 'string')
             element = new ElementWrapper(type);
@@ -55,12 +54,12 @@ export let ToyReact = {
         let insertChildren = (children) => {
             for (let child of children) {
                 if(typeof child === 'object' && child instanceof Array) {
-                    insertChildren(child)
+                    insertChildren(child);
                 } else {
                     if(!(child instanceof Component) 
                         && !(child instanceof ElementWrapper) 
                         && !(child instanceof TextWrapper)) {
-                        child = String(child)
+                        child = String(child);
                     }
                     if( typeof child === 'string')
                         child = new TextWrapper(child)
